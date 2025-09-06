@@ -28,11 +28,19 @@
       overflow-y:hidden;
       background-attachment: fixed;
     }
-    video.bgvid {
-      position:fixed; inset:0; object-fit:cover;
-      opacity:1; filter:brightness(0.5);
-      z-index:-2;
-    }
+   video.bgvid{
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100vw;         /* fill the viewport width */
+  height: 100svh;       /* fill the “small” viewport height (mobile-safe) */
+  height: 100vh;        /* fallback for older browsers */
+  object-fit: cover;    /* crop to fill while preserving aspect */
+  object-position: center;
+  opacity: 1;
+  filter: brightness(0.5);
+  z-index: -2;
+}
     .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:-1; }
     .fog { position: fixed; inset: -20vmax; pointer-events:none; z-index:0;
       background: radial-gradient(60vmax 40vmax at 20% 40%, rgba(255,255,255,.03), transparent 60%), radial-gradient(70vmax 40vmax at 80% 60%, rgba(255,255,255,.03), transparent 60%);
@@ -137,3 +145,4 @@
   </main>
 </body>
 </html>
+

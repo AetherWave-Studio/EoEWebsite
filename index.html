@@ -1,150 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0d0b15" />
-  <title>End of Eternity — Official Splash</title>
-  <meta name="description" content="End of Eternity — The End is Here." />
-  <meta property="og:title" content="End of Eternity" />
-  <meta property="og:description" content="The End is Here." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/eoe_og.jpg" />
-  <meta property="og:url" content="https://example.com" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600..900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lila Nova | Pop Singer</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
-    :root{
-      --ink:#e9e8ff;
-      --muted:#b7b3d9;
-      --aetherwave-pink:#ff2ea6;
-    }
-    html, body { height: 100%; margin:0; }
-    body{
-      color:var(--ink);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      overflow-x:hidden;
-      overflow-y:hidden;
-      background-attachment: fixed;
-    }
-   video.bgvid{
-  position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100vw;         /* fill the viewport width */
-  height: 100svh;       /* fill the “small” viewport height (mobile-safe) */
-  height: 100vh;        /* fallback for older browsers */
-  object-fit: cover;    /* crop to fill while preserving aspect */
-  object-position: center;
-  opacity: 1;
-  filter: brightness(0.5);
-  z-index: -2;
-}
-
-    .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:-1; }
-    .fog { position: fixed; inset: -20vmax; pointer-events:none; z-index:0;
-      background: radial-gradient(60vmax 40vmax at 20% 40%, rgba(255,255,255,.03), transparent 60%), radial-gradient(70vmax 40vmax at 80% 60%, rgba(255,255,255,.03), transparent 60%);
-      filter: blur(30px) contrast(110%);
-      animation: drift 60s linear infinite;
-    }
-    @keyframes drift { from{ transform:translate3d(0,0,0) scale(1);} to{ transform:translate3d(-6%,-4%,0) scale(1.05);} }
-
-    .wrap{ position:relative; z-index:1; height:100vh; display:flex; align-items:center; justify-content:center; padding: 0 20px; box-sizing:border-box; }
-    .hero{ width:min(1200px, 100%); text-align:center; }
-    .hero img.logo-img{
-      max-width:400px;
-      width:60%;
-      height:auto;
-      margin:0 auto 10px;
-      display:block;
-      filter: drop-shadow(0 0 20px rgba(255,46,166,.4));
-      animation: logoPulse 4s ease-in-out infinite;
+    :root {
+      --bg: #0a0a0f;
+      --primary: #ff4fd8;  /* pink */
+      --secondary: #5be1ff; /* cyan */
+      --accent: #ffe66d; /* soft yellow */
+      --text: #ffffff;
+      --muted: #dfe7ff;
     }
 
-    @keyframes logoPulse {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(255,46,166,.4)); }
-      50% { filter: drop-shadow(0 0 40px rgba(255,46,166,.8)); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(255,79,216,0.25), transparent 60%),
+                  radial-gradient(1200px 600px at 10% 110%, rgba(91,225,255,0.22), transparent 60%),
+                  linear-gradient(180deg, #0a0a10 0%, #0f1126 60%, #0a0a10 100%);
+      color: var(--text);
+      overflow-x: hidden;
     }
 
-    .tagline{ margin:10px auto 20px; max-width:52ch; color:var(--muted); font-size:clamp(18px, 2.5vw, 26px); font-weight:600; }
-
-    .links{ margin-top:20px; display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
-    .linkicon{
-      width:56px; height:56px; display:grid; place-items:center;
-      border-radius:50%; color:white; text-decoration:none;
-      box-shadow:0 0 12px rgba(255,46,166,.3);
-      transition: transform .3s ease, box-shadow .3s ease;
-      animation: idleGlow 4s ease-in-out infinite;
+    /* Floating blobs */
+    .blob { position: fixed; inset: 0; z-index: -2; filter: blur(40px); opacity: 0.7; }
+    .blob::before,
+    .blob::after {
+      content: "";
+      position: absolute;
+      width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--primary), transparent 60%);
+      animation: float1 16s ease-in-out infinite;
     }
-    .linkicon svg{ width:26px; height:26px; }
-
-    /* Idle glow */
-    @keyframes idleGlow {
-      0%, 100% { box-shadow:0 0 12px rgba(255,46,166,.3); }
-      50% { box-shadow:0 0 20px rgba(255,46,166,.6); }
+    .blob::after {
+      left: 60%; top: 40%;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle at 60% 60%, var(--secondary), transparent 60%);
+      animation: float2 18s ease-in-out infinite;
     }
+    @keyframes float1 { 0%, 100% { transform: translate(-10%, -6%); } 50% { transform: translate(6%, 10%);} }
+    @keyframes float2 { 0%, 100% { transform: translate(4%, -4%); } 50% { transform: translate(-8%, 6%);} }
 
-    /* Hover pulse animation */
-    .linkicon:hover{
-      transform:scale(1.1);
-      animation:pulse 1.5s infinite;
+    /* Nav */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 10;
+      padding: 18px 28px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,10,20,0.45); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
-    @keyframes pulse {
-      0% { box-shadow:0 0 0 0 var(--aetherwave-pink); }
-      50% { box-shadow:0 0 28px 8px var(--aetherwave-pink); }
-      100% { box-shadow:0 0 0 0 var(--aetherwave-pink); }
+    .brand { font-weight: 800; letter-spacing: 1px; font-size: 22px; }
+    .brand span { color: var(--primary); }
+    nav ul { list-style: none; display: flex; gap: 24px; }
+    nav a { color: var(--muted); text-decoration: none; font-weight: 600; font-size: 13px; letter-spacing: 1.3px; text-transform: uppercase; }
+    nav a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center;
+      padding: 120px 8% 60px; gap: 40px; position: relative;
     }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      padding: 8px 12px; border-radius: 999px; color: var(--muted); font-size: 12px; letter-spacing: 1px;
+	  margin: 40px;
+    }
+    .title { font-size: clamp(40px, 6vw, 84px); line-height: 1.02; font-weight: 900; letter-spacing: -0.5px; margin-top: 14px; }
+    .title .grad { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { margin-top: 16px; color: var(--muted); font-size: clamp(16px, 2.4vw, 20px); line-height: 1.7; }
 
-    .spotify{ background:#1DB954; }
-    .youtube{ background:#FF0000; }
-    .instagram{ background:radial-gradient(circle at 30% 30%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-    .facebook{ background:#1877F2; }
-    .bandcamp{ background:#629aa9; }
-    .tiktok{ background:linear-gradient(45deg, #25F4EE, #FE2C55); }
+    .cta-row { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      padding: 14px 22px; border-radius: 14px; border: 0; cursor: pointer; text-decoration: none; font-weight: 800;
+      letter-spacing: 0.6px; transition: transform 0.15s ease, box-shadow 0.2s ease; display: inline-flex; align-items: center; gap: 10px;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #0b0b16; box-shadow: 0 10px 26px rgba(255,79,216,0.25), 0 6px 16px rgba(91,225,255,0.18); }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 14px 34px rgba(255,79,216,0.3), 0 10px 26px rgba(91,225,255,0.22); }
+    .btn-ghost { background: rgba(255,255,255,0.08); color: var(--text); border: 1px solid rgba(255,255,255,0.18); }
+    .btn-ghost:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255,255,255,0.12); }
 
-    @media (prefers-reduced-motion: reduce) {
-      .linkicon { animation:none; }
-      .linkicon:hover { animation:none; }
-      .hero img.logo-img { animation:none; }
+    /* Media card */
+    .media-card { width: 100%; max-width: 720px; margin: 20px auto 0; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); box-shadow: 0 20px 60px rgba(0,0,0,0.45); }
+    .video-ph { aspect-ratio: 16/9; display: grid; place-items: center; background: linear-gradient(135deg, rgba(255,79,216,0.2), rgba(91,225,255,0.18)); color: var(--text); font-size: 18px; }
+
+    /* Highlights section */
+    .highlights { padding: 60px 8% 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 16px; padding: 22px; min-height: 140px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+    .card h4 { font-size: 16px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px; }
+    .card p { color: var(--muted); line-height: 1.7; font-size: 14px; }
+
+    /* About section */
+    .about { padding: 80px 8% 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .about img { width: 100%; border-radius: 18px; border: 1px solid rgba(255,255,255,0.18); box-shadow: 0 14px 40px rgba(0,0,0,0.45); }
+    .about h3 { font-size: 28px; margin-bottom: 8px; }
+    .about p { color: var(--muted); line-height: 1.8; }
+
+    /* Footer */
+    footer { padding: 40px 8% 60px; text-align: center; }
+    .social { display: flex; justify-content: center; gap: 18px; margin-bottom: 14px; }
+    .social a { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,0.08); color: var(--text); text-decoration: none; border: 1px solid rgba(255,255,255,0.14); transition: transform 0.15s ease, background 0.2s ease; }
+    .social a:hover { transform: translateY(-3px); background: linear-gradient(135deg, var(--primary), var(--secondary)); color: #0b0b16; }
+    footer p { color: var(--muted); font-size: 13px; letter-spacing: 1px; }
+		
+	.section-bg {
+		background:
+			url('https://www.dropbox.com/scl/fi/hen8fzfkmn1iuathpcbop/EoE-onstageedit.png?rlkey=7wfzjye88v04hw6el85zjpcrm&raw=1') bottom center no-repeat,
+			rgba(255,255,255,0.2);          /* semi-transparent for effect to show */
+		   backdrop-filter: blur(20px);
+		   -webkit-backdrop-filter: blur(8px);         /* for Safari */
+			}
+			
+	.section-bg2 {
+		background:
+			url('https://www.dropbox.com/scl/fi/k0ites0cz1mk9zw3yuvcr/SynthWave-Tech-Grunge-Interface-1.png?rlkey=k9q2f0gddutmpr28caqzahp92&raw=1') bottom center no-repeat,
+			}
+	
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; padding-top: 110px; }
+      .highlights { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-    <video class="bgvid" autoplay muted loop playsinline preload="auto" poster="fallback.jpg">
-  <source src="./Robots_Walking.mp4" type="video/mp4">
-</video>
-  <div class="overlay"></div>
-  <div class="fog" aria-hidden="true"></div>
+  <div class="blob"></div>
 
-  <main class="wrap">
-    <section class="hero">
-      <img class="logo-img" src="./Eoe_Logo.png" alt="End of Eternity Logo">
-      <p class="tagline">The End is Here.</p>
+  <nav>
+    <div class="brand">End<span>of</span><span>Eternity</span></div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="merch.html">Merch</a></li>
+    </ul>
+  </nav>
 
-      <div class="links" aria-label="Social links">
-        <a class="linkicon bandcamp" href="https://endofeternity.bandcamp.com/" target="_blank" aria-label="Bandcamp">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 3H9l-7 9 7 9h13l-7-9 7-9z"/></svg>
-        </a>
-        <a class="linkicon spotify" href="https://open.spotify.com/user/31ap2pz5gr52lduisiujigvwqy34" target="_blank" aria-label="Spotify">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.8a10.2 10.2 0 1 0 0 20.4A10.2 10.2 0 0 0 12 1.8Zm4.67 14.87a.76.76 0 0 1-1.05.25c-2.88-1.76-6.51-2.16-10.77-1.18a.76.76 0 0 1-.34-1.47c4.61-1.06 8.6-.62 11.77 1.28.35.21.46.67.2 1.12Zm1.4-3.14a.95.95 0 0 1-1.31.33c-3.29-1.97-8.3-2.55-12.19-1.39a.95.95 0 0 1-.54-1.83c4.38-1.29 9.87-.64 13.62 1.6.45.27.6.87.34 1.29Zm.13-3.3c-3.78-2.24-10.06-2.44-13.67-1.33a1.14 1.14 0 1 1-.66-2.18c4.18-1.26 11-1.02 15.33 1.56a1.14 1.14 0 0 1-1.2 1.95Z"/></svg>
-        </a>
-        <a class="linkicon youtube" href="https://www.youtube.com/@EndofEternityOfficial" target="_blank" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3.03 3.03 0 0 0-2.14-2.15C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.36.55A3.03 3.03 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3.03 3.03 0 0 0 2.14 2.15C4.5 20.5 12 20.5 12 20.5s7.5 0 9.36-.55a3.03 3.03 0 0 0 2.14-2.15A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8ZM9.75 15.5v-7L16 12l-6.25 3.5Z"/></svg>
-        </a>
-        <a class="linkicon instagram" href="https://www.instagram.com/end_of_eternity_music/" target="_blank" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.75-3a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/></svg>
-        </a>
-        <a class="linkicon facebook" href="https://www.facebook.com/profile.php?id=61566867582117" target="_blank" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9V14H8v-3h2.5V8.5c0-2.5 1.5-3.9 3.7-3.9 1.1 0 2.3.2 2.3.2V7h-1.3c-1.3 0-1.7.8-1.7 1.6V11H17l-.5 3h-3v7a10 10 0 0 0 8.5-9.9z"/></svg>
-        </a>
-        <a class="linkicon tiktok" href="https://www.tiktok.com/@endofeternitymusic" target="_blank" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.7 2h3.1c.2 1.1.8 2.1 1.6 2.9.8.8 1.8 1.3 2.9 1.6v3.2c-1.6 0-3.1-.5-4.5-1.3v7.4c0 3.7-3 6.7-6.7 6.7S2.3 19.5 2.3 15.8c0-3.6 3-6.6 6.6-6.6.4 0 .9 0 1.3.1v3.5c-.4-.1-.9-.2-1.3-.2-1.7 0-3.1 1.4-3.1 3.2s1.4 3.2 3.1 3.2c1.8 0 3.2-1.4 3.2-3.2V2z"/></svg>
-        </a>
+  <main class="hero" "section-bg2" id="home">
+	<div class="section-bg">
+      <div class="tag"><i class="fa-solid fa-bolt" style="color:Magenta"></i>Currently In The Studio</div>
+      <h1 class="title" style= "text-align:center">Gothic Vibes<span class="grad">of the</span> Past</h1>
+      <p class="subtitle">End of Eternity (EoE) is a band blending gothic energy with a futuristic twist, bringing a haunting yet nostalgic sound that spans time.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#video"><i class="fa-solid fa-play"></i> Watch Video</a>
+        <a class="btn btn-ghost" href="gallery.html"><i class="fa-regular fa-images"></i> Gallery</a>
+        <a class="btn btn-ghost" href="merch.html"><i class="fa-solid fa-bag-shopping"></i> Shop Merch</a>
       </div>
-    </section>
+
+      <section class="highlights" aria-label="highlights">
+        <div class="card">
+          <h4>Denver Launch</h4>
+          <p>Moments from the release of Denver's new Super group.</p>
+        </div>
+        <div class="card">
+          <h4>Fan Club</h4>
+          <p>Join the EoE Agency for early drops, behind-the-scenes clips, and exclusive livestreams.</p>
+        </div>
+        <div class="card">
+          <h4>Limited Merch</h4>
+          <p>Signature style tees, comic book posters, and the debut album — while supplies last.</p>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <div class="media-card" id="video">
+        <div class="video-ph">
+          <i class="fa-solid fa-circle-play" style="font-size: 72px;"></i>
+          <!-- Replace with your video embed or file:-->
+          <video controls playsinline poster="poster.jpg">
+            <source src="public/assets/End Of Eternity - 'Ghost' (Gunship Cover).mp4" type="video/mp4" />
+          </video>
+          <!--or
+          <iframe width="100%" height="100%" src="https://studio.youtube.com/video/fJ-4ke0v6fs/edit" title="YouTube video" frameborder="0" allowfullscreen></iframe>-->
+          
+        </div>
+      </div>
+    </div>
   </main>
+
+  <section class="about" id="about">
+    <img src="https://www.dropbox.com/scl/fi/gu2dq8xcmnk402o1njsog/UI-Control-Elements-Suite.png?rlkey=xtd2jrio1yab0cezcqom9woe3&raw=1" alt="Synthwave Tools" />
+    <div>
+      <h3>About End of Eternity</h3>
+      <p>
+        Our aim is to bridge eras, combining the essence of classic gothic tones with cutting-edge elements. Whether through intense drum beats, atmospheric synths, or haunting melodies, EoE transports listeners to a realm where the end is always near, and every song feels like an invitation to explore the unknown.
+      </p>
+      <p style="margin-top:12px;">
+        From intimate studio sessions to arena stages, EoE's vision blends fashion-forward visuals, Mythic lore, and polished production — an immersive sonic experience.
+      </p>
+      <div class="cta-row" style="margin-top:18px;">
+        <a class="btn btn-primary" href="gallery.html"><i class="fa-regular fa-image"></i> Explore Gallery</a>
+        <a class="btn btn-ghost" href="merch.html"><i class="fa-solid fa-ticket"></i> Tour & Merch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social">
+      <a href="https://open.spotify.com/user/31ap2pz5gr52lduisiujigvwqy34" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+      <a href="https://endofeternity.bandcamp.com/" aria-label="bandcamp"><i class="fab fa-bandcamp"></i></a>
+      <a href="https://www.youtube.com/@EndofEternityOfficial" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/end_of_eternity_music/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@endofeternitymusic" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61566867582117" aria-label="X/Twitter"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p>© 2025 End of Eternity. All rights reserved.</p>
+  </footer>
 </body>
 </html>
-
-
